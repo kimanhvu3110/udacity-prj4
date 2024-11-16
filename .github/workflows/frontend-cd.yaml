@@ -1,7 +1,6 @@
 name: Frontend Continuous Deployment
 
 on:
-  # Trigger pipeline automatically on changes to frontend code in the main branch
   push:
     branches:
       - main
