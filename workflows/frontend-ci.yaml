@@ -1,7 +1,6 @@
 name: Frontend Continuous Integration
 
 on:
-  # This allows running on-demand
   workflow_dispatch:
   pull_request:
     branches:
