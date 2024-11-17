@@ -23,58 +23,44 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Cache pipenv dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pipenv
-          key: pipenv-${{ runner.os }}-${{ hashFiles('**/Pipfile.lock') }}
-          restore-keys: |
-            pipenv-${{ runner.os }}-
-
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{env.PYTHON_VERSION}}
-
-      - name: Install pipenv
-        run: |
-          pip install pipenv
+          python-version: 3.11  
 
       - name: Install dependencies
         run: |
-          pipenv install
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install --dev
 
-      - name: Run lint
-        run: |
-          pipenv run flake8  # Ensure flake8 is installed as part of pipenv
+      - name: Run Linting
+        run: pipenv run lint
 
   test:
     name: Backend Run Tests
     runs-on: ubuntu-latest
-    needs: lint  # Ensure test runs only after lint job
+    needs: lint # Run only after linting passes
     defaults:
       run:
-        working-directory: ./backend
+        working-directory: backend
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{env.PYTHON_VERSION}}
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install pipenv
-        run: |
-          pip install pipenv
+        run: pip install pipenv
 
       - name: Install dependencies
-        run: |
-          pipenv install
+        run: pipenv install
 
       - name: Run tests
-        run: |
-          pipenv run pytest  # Assuming pytest is your testing framework
+        run: pipenv run pytest
 
   build:
     name: Build & Push Docker Image
