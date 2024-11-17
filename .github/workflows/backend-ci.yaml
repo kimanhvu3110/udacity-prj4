@@ -46,7 +46,7 @@ jobs:
 
       - name: Run lint
         run: |
-          pipenv run flake8  # Ensure flake8 is installed as part of pipenv
+          pipenv run lint
 
   test:
     name: Backend Run Tests
