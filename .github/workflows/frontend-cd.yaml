@@ -12,7 +12,7 @@ on:
 
 env:
   NODE_VERSION: 18.x
-  REACT_APP_MOVIE_API_URL: http://localhost:5000
+  REACT_APP_MOVIE_API_URL: http://ace10513dd7bc4a1b84a85d7cac7140c-1536815082.us-east-1.elb.amazonaws.com
 
 jobs:
   lint:
