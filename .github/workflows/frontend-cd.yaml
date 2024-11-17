@@ -121,7 +121,7 @@ jobs:
           echo "Backend external IP: $EXTERNALIP"
           
           # Build Docker image with the environment variable as a build argument
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --build-arg REACT_APP_MOVIE_API_URL=$REACT_APP_MOVIE_API_URL .
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG --build-arg REACT_APP_MOVIE_API_URL=${{ env.REACT_APP_MOVIE_API_URL }} .
           
           # Push the image to ECR
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
