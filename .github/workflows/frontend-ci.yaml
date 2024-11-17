@@ -5,8 +5,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "frontend/**"
 
 env:
   NODE_VERSION: 18.x

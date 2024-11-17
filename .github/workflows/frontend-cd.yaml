@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'frontend/**'
-
-  # Manual trigger for on-demand execution
   workflow_dispatch:
 
 env:
